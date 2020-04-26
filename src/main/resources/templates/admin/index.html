@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>صفحه اصلی</title>
+  <div th:replace="fragment/admin_header::head"></div>
+</head>
+<body>
+<div th:replace="fragment/admin_header::menu"></div>
+<div class="wrapper">
+                <!-- works -->
+        <div class="works" id="work">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3" th:each="book : ${books} ">
+                    <!-- work item -->
+                    <div class="work-item ">
+                        <div class="image_box">
+                            <!-- work details image -->
+                            <img class="img-responsive" th:src="'/img/'+${book.getCover()}" alt="" />
+                            <!-- heading -->
+                            <h3><a th:href="'/books/'+${book.getId()}" th:text="${book.getName()}"></a></h3>
+                            <!-- brand org -->
+                            <span class="org" th:text="${book.getAuthor()}"></span>
+                            <h6 th:text=" ${#temporals.format(book.getUpdatedAt(), 'yyyy-MM-dd')}"></h6>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+    <div th:replace="fragment/footer::footer"></div>
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>صفحه اصلی</title>
+  <div th:replace="fragment/header::head"></div>
+</head>
+<body>
+<div th:replace="fragment/header::menu"></div>
+<div class="wrapper">
+                <!-- works -->
+        <div class="works" id="work">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3" th:each="book : ${books} ">
+                    <!-- work item -->
+                    <div class="work-item ">
+                        <div class="image_box">
+                            <!-- work details image -->
+                            <img class="img-responsive" th:src="'/img/'+${book.getCover()}" alt="" />
+                            <!-- heading -->
+                            <h3><a th:href="'/books/'+${book.getId()}" th:text="${book.getName()}"></a></h3>
+                            <!-- brand org -->
+                            <span class="org" th:text="${book.getAuthor()}"></span>
+                            <h6 th:text=" ${#temporals.format(book.getUpdatedAt(), 'yyyy-MM-dd')}"></h6>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+    <!-- team -->
+<!--    <div class="team" id="team">-->
+<!--        <div class="container">-->
+<!--            &lt;!&ndash; default heading &ndash;&gt;-->
+<!--            <div class="default-heading">-->
+<!--                &lt;!&ndash; heading &ndash;&gt;-->
+<!--                <h2>Our Team</h2>-->
+<!--                &lt;!&ndash; paragraph &ndash;&gt;-->
+<!--                <p>There are now a set available here in three<br>colours and in a banner sizes.</p>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-3">-->
+<!--                    &lt;!&ndash; team member &ndash;&gt;-->
+<!--                    <div class="member">-->
+<!--                        &lt;!&ndash; team member image &ndash;&gt;-->
+<!--                        <img class="img-responsive" src="img/team/1.jpg" alt="" />-->
+<!--                        &lt;!&ndash; member details / heading &ndash;&gt;-->
+<!--                        <h4><a href="#">John Doe</a></h4>-->
+<!--                        &lt;!&ndash; paragraph &ndash;&gt;-->
+<!--                        <p>Short description about how cool John Doe is!</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-3">-->
+<!--                    &lt;!&ndash; team member &ndash;&gt;-->
+<!--                    <div class="member">-->
+<!--                        &lt;!&ndash; team member image &ndash;&gt;-->
+<!--                        <img class="img-responsive" src="img/team/2.jpg" alt="" />-->
+<!--                        &lt;!&ndash; member details / heading &ndash;&gt;-->
+<!--                        <h4><a href="#">John Doe</a></h4>-->
+<!--                        &lt;!&ndash; paragraph &ndash;&gt;-->
+<!--                        <p>Short description about how cool John Doe is!</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-3">-->
+<!--                    &lt;!&ndash; team member &ndash;&gt;-->
+<!--                    <div class="member">-->
+<!--                        &lt;!&ndash; team member image &ndash;&gt;-->
+<!--                        <img class="img-responsive" src="img/team/1.jpg" alt="" />-->
+<!--                        &lt;!&ndash; member details / heading &ndash;&gt;-->
+<!--                        <h4><a href="#">John Doe</a></h4>-->
+<!--                        &lt;!&ndash; paragraph &ndash;&gt;-->
+<!--                        <p>Short description about how cool John Doe is!</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-3">-->
+<!--                    &lt;!&ndash; team member &ndash;&gt;-->
+<!--                    <div class="member">-->
+<!--                        &lt;!&ndash; team member image &ndash;&gt;-->
+<!--                        <img class="img-responsive" src="img/team/2.jpg" alt="" />-->
+<!--                        &lt;!&ndash; member details / heading &ndash;&gt;-->
+<!--                        <h4><a href="#">John Doe</a></h4>-->
+<!--                        &lt;!&ndash; paragraph &ndash;&gt;-->
+<!--                        <p>Short description about how cool John Doe is!</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <div th:replace="fragment/footer::footer"></div>
+    </div>
+    </div>
+</body>
+</html>

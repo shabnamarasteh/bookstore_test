@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ادمین های سیستم</title>
+    <div th:replace="fragment/admin_header::head"></div>
+</head>
+<body>
+    <div th:replace="fragment/admin_header::menu"></div>
+    <div class="wrapper">
+        <!-- works -->
+        <div class="works" id="admins">
+            <div class="container">
+                <div class="row">
+                    <table>
+                        <thead>
+                            <td>#</td>
+                            <td>نام</td>
+                            <td>کدملی</td>
+                            <td>ویرایش</td>
+                            <td>حذف</td>
+                        </thead>
+                        <tr class="col-md-3" th:each="admin : ${admins} ">
+
+                            <td class="image_box">
+                                <!-- work details image -->
+                                <img class="img-responsive" th:src="'/img/admin/'+${admin.getImage()}" alt="" />
+                                <!-- heading -->
+
+                                <!-- brand org -->
+                                <h6 th:text=" ${#temporals.format(admin.getUpdatedAt(), 'yyyy-MM-dd')}"></h6>
+
+                            </td>
+                            <td>   <h3><a th:href="'/admin/admins/'+${admin.getId()}" th:text="${admin.getFirstname()}+${admin.getLastname()}"></a></h3></td>
+                            <td>   <h3><a th:href="'/admin/admins/'+${admin.getId()}" th:text="${admin.getNationalcode()}"></a></h3></td>
+                            <td>   <h3><a th:href="'/admin/admins/edit/'+${admin.getId()}" >edit</a></h3></td>
+                            <td>   <h3><a th:href="'/admin/admins/delete/'+${admin.getId()}" >delete</a></h3></td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+            </div>
+
+            <div th:replace="fragment/footer::footer"></div>
+        </div>
+    </div>
+</body>
+</html>

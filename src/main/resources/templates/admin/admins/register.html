@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>اطلاعات ادمین</title>
+    <div th:replace="fragment/admin_header::head"></div>
+</head>
+<body>
+<div th:replace="fragment/admin_header::menu"></div>
+
+    <div class="col-md-12">
+        <div class="col-md-2" style="border-bottom: 1px solid red;float: right;margin: 20px 10px;border-radius: 3px;padding: 4px;">
+            <h4  style="text-align: right">اطلاعات ادمین</h4>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+    <div  class="col-md-6">
+        <form role="form" id="registeradminForm" th:action="@{/admin/admins/register}" th:object="${admin}" method="post" enctype="multipart/form-data">
+
+            <div class="form-group">
+
+                <label for="firstname">نام</label>
+                <input class="form-control" type="text" id="firstname" name="firstname" th:field="*{firstname}" placeholder="نام" />
+            </div>
+            <div class="form-group">
+                <label for="lastname">نام خانوادگی</label>
+                <input class="form-control" type="text" id="lastname" name="lastname" th:field="*{lastname}" placeholder="نام خانوادگی" />
+            </div>
+            <div class="form-group">
+                <label for="nationalcode">کدملی</label>
+                <input class="form-control" type="text" id="nationalcode" name="nationalcode" th:field="*{nationalcode}" placeholder="کدملی" />
+            </div>
+            <div class="form-group">
+                <label for="email">ایمیل</label>
+                <input class="form-control" type="email" id="email" name="email" th:field="*{email}" placeholder="ایمیل" />
+            </div>
+            <div class="form-group">
+                <label for="password">رمز عبور</label>
+                <input class="form-control" type="password" id="password" name="password" placeholder="رمز عبور" />
+            </div>
+             <div class="form-group">
+                <label for="phonenumber">شماره تلفن</label>
+                <input class="form-control" type="text" id="phonenumber" name="phonenumber"  th:field="*{phonenumber}" placeholder="شماره تلفن" />
+            </div>
+             <div class="form-group">
+                <label for="mobilenumber">شماره همراه</label>
+                <input class="form-control" type="number" id="mobilenumber" name="mobilenumber"  th:field="*{mobilenumber}" placeholder="شماره همراه" />
+            </div>
+            <div class="form-group">
+                <label for="province">شهر</label>
+                <input class="form-control" type="text" id="province" name="province"  th:field="*{province}" placeholder="شهر" />
+            </div>
+            <div class="form-group">
+                <label for="city">استان</label>
+                <input class="form-control" type="text" id="city" name="city"  th:field="*{city}" placeholder="استان" />
+            </div>
+            <div class="form-group">
+                <label for="address">آدرس</label>
+                <input class="form-control" type="text" id="address" name="address" th:field="*{address}" placeholder="آدرس" />
+            </div>
+            <div class="form-group">
+                <label for="file">تصویر</label>
+                <input class="form-control" type="file" id="file" name="file"  th:field="*{file}" placeholder="تصویر" />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" name="submit" id="submit" class="btn btn-default">ثبت</button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+</body>
+</html>
