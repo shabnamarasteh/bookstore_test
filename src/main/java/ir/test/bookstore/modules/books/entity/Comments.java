@@ -2,6 +2,8 @@ package ir.test.bookstore.modules.books.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import ir.test.bookstore.modules.users.entity.Users;
+import org.apache.catalina.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -26,6 +28,10 @@ public class Comments {
 
     @ManyToOne
     private Books books;
+
+    @ManyToOne
+    @JoinColumn
+    private Users user;
 
     public Comments() {
     }

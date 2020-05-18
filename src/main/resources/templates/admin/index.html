@@ -17,12 +17,13 @@
                     <div class="work-item ">
                         <div class="image_box">
                             <!-- work details image -->
-                            <img class="img-responsive" th:src="'/img/'+${book.getCover()}" alt="" />
+                            <img class="img-responsive" th:src="'/img/'+${book.getImage()}" alt="" />
                             <!-- heading -->
                             <h3><a th:href="'/books/'+${book.getId()}" th:text="${book.getName()}"></a></h3>
                             <!-- brand org -->
                             <span class="org" th:text="${book.getAuthor()}"></span>
                             <h6 th:text=" ${#temporals.format(book.getUpdatedAt(), 'yyyy-MM-dd')}"></h6>
+                            <h6 th:text="'موجودی : '+${book.getBalance()}"></h6>
                         </div>
                     </div>
                 </div>

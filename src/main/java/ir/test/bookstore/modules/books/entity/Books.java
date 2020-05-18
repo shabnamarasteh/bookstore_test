@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import ir.test.bookstore.modules.admins.entity.Admins;
+import ir.test.bookstore.modules.borrow.entity.Borrow;
+import javafx.beans.DefaultProperty;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,10 +24,9 @@ public class Books {
     private long id;
     private String name;
     private String subject;
-    private String author;
-    private String cover;
-    private long publishYear;
+    private String author;    private long publishYear;
     private long count; //tedadekol
+    @Column(nullable = true)
     private long balance; //mojodi
     @Column(name = "created_at" , updatable = false )
     @CreationTimestamp
@@ -33,23 +35,26 @@ public class Books {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     private long createdBy;
+    private String image;
+
 
     @Transient
     @JsonIgnore
     private MultipartFile file;
 
-
     @OneToMany(mappedBy = "books")
     private List<Comments> comments;
+
+    @OneToMany(mappedBy = "bookid")
+    private List<Borrow> borrows ;
 
     @ManyToOne
     private Admins admins;
 
-    public Books(String name, String subject, String author, String cover, long publishYear, long count, long balance, long createdBy) {
+    public Books(String name, String subject, String author, long publishYear, long count, long balance, long createdBy) {
         this.name = name;
         this.subject = subject;
         this.author = author;
-        this.cover = cover;
         this.publishYear = publishYear;
         this.count = count;
         this.balance = balance;
@@ -57,15 +62,6 @@ public class Books {
     }
 
     public Books() {
-    }
-
-    public String getCover() {
-        return cover;
-    }
-
-    public Books setCover(String cover) {
-        this.cover = cover;
-        return this;
     }
 
     public String getName() {
@@ -173,6 +169,24 @@ public class Books {
 
     public Books setFile(MultipartFile file) {
         this.file = file;
+        return this;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public Books setImage(String image) {
+        this.image = image;
+        return this;
+    }
+
+    public List<Borrow> getBorrows() {
+        return borrows;
+    }
+
+    public Books setBorrows(List<Borrow> borrows) {
+        this.borrows = borrows;
         return this;
     }
 }

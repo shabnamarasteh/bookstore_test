@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>کتاب ها</title>
+    <div th:replace="fragment/admin_header::head"></div>
+</head>
+<body>
+    <div th:replace="fragment/admin_header::menu"></div>
+
+    <div class="page-title">
+           <p style="text-align: right">کتاب ها</p>
+       </div>
+        <!-- works -->
+        <div class="works" id="books">
+            <div class="container">
+                <div class="row">
+                    <table class="table table-hover" style="direction: rtl">
+                        <thead>
+                            <td>#</td>
+                            <td>نام</td>
+                            <td>موضوع</td>
+                            <td>نویسنده</td>
+                            <td>سال انتشار</td>
+                            <td>تعداد موجود</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </thead>
+                        <tr th:each="book : ${books} ">
+                            <td >
+                                <img class="img-responsive" width="100px" th:src="'/img/book/'+${book.getImage()}" alt="" />
+                            </td>
+                            <td><a th:href="'/admin/books/'+${book.getId()}"><p th:text="${book.getName()}"></p></a></td>
+                            <td><a th:href="'/admin/books/'+${book.getId()}"><p th:text="${book.getSubject()}"></p></a></td>
+                            <td><p th:text="${book.getAuthor()}"></p></td>
+                            <td><p th:text="${book.getPublishYear()}"></p></td>
+                            <td><p th:text="${book.getBalance()}"></p></td>
+                            <td><a th:href="'/admin/books/edit/'+${book.getId()}" >ویرایش</a></td>
+                            <td><a th:href="'/admin/books/delete/'+${book.getId()}" >حذف</a></td>
+                            <td><a class="btn" th:href="'/admin/book/comments/'+${book.getId()}" >مشاهده نظرات</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    <div th:replace="fragment/footer::footer"></div>
+
+</body>
+</html>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/css/style.css}" rel="stylesheet">
+    <title></title>
 </head>
 <body>
 
@@ -26,7 +27,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/">صفحه اصلی</a></li>
+                    <li><a href="/admin">صفحه اصلی</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">کتاب ها <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -42,6 +43,14 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a th:href="@{/admin/users/register}">ثبت کاربر جدید</a></li>
                             <li><a th:href="@{/admin/users/}" >لیست کاربران</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">اشتراک<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a th:href="@{/admin/levels/register}">ثبت اشتراک </a></li>
+                            <li><a th:href="@{/admin/levels/}" >لیست اشتراک </a></li>
                         </ul>
                     </li>
 

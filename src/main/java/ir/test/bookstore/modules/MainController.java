@@ -26,7 +26,6 @@ public class MainController {
         return "index";
     }
 
-
     @RequestMapping(value = {"/admin/" , "/admin" } , method = RequestMethod.GET)
     public String adminindex(Model model){
         model.addAttribute("books", booksService.findAllBooks());

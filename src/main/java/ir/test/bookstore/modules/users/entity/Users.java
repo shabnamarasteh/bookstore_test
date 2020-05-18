@@ -28,31 +28,28 @@ public class Users {
     private LocalDateTime createdAt;
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-    private long createdBy;
     private long phonenumber;
     private long mobilenumber;
-    private long levelid;
 
     @ManyToOne
-    private Admins admins;
+    @JoinColumn(name = "createdBy")
+    private Admins createdBy;
 
     @ManyToOne
-    private Levels levels;
+    private Levels level;
 
     public Users() {
     }
 
-    public Users(String firstname, String lastname, long nationalcode, String email, String password, String address, long createdBy, long phonenumber, long mobilenumber, long levelid) {
+    public Users(String firstname, String lastname, long nationalcode, String email, String password, String address, long phonenumber, long mobilenumber) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.nationalcode = nationalcode;
         this.email = email;
         this.password = password;
         this.address = address;
-        this.createdBy = createdBy;
         this.phonenumber = phonenumber;
         this.mobilenumber = mobilenumber;
-        this.levelid = levelid;
     }
 
     public long getId() {
@@ -135,13 +132,6 @@ public class Users {
         this.updatedAt = updatedAt;
     }
 
-    public long getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(long createdBy) {
-        this.createdBy = createdBy;
-    }
 
     public long getPhonenumber() {
         return phonenumber;
@@ -159,11 +149,21 @@ public class Users {
         this.mobilenumber = mobilenumber;
     }
 
-    public long getLevelid() {
-        return levelid;
+    public Admins getCreatedBy() {
+        return createdBy;
     }
 
-    public void setLevelid(long levelid) {
-        this.levelid = levelid;
+    public Users setCreatedBy(Admins createdBy) {
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    public Levels getLevel() {
+        return level;
+    }
+
+    public Users setLevel(Levels level) {
+        this.level = level;
+        return this;
     }
 }

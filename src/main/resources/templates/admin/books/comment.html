@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>نظرات</title>
+    <div th:replace="fragment/admin_header::head"></div>
+</head>
+<body>
+<div th:replace="fragment/admin_header::menu"></div>
+
+<div class="page-title">
+<!--    <p style="text-align: right" th:text="${book.getName()}"></p>-->
+</div>
+
+<div class="works" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12" style="border: 1px solid #eee">
+
+                <div th:each="comment : ${comments} ">
+                    <p style="text-align: right" th:text="${comments.getUserid()}"></p>
+                    <p style="text-align: right" th:text="${comments.getDescription()}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div th:replace="fragment/footer::footer"></div>
+
+</body>
+</html>

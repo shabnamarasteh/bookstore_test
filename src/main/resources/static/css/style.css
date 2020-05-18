@@ -123,7 +123,6 @@ header .navbar-brand img {
  */
  
 .banner {
-	background: #fff url('../img/back.jpg');
 	padding-top: 150px;
 	padding-bottom: 150px;
 	text-align: center;
@@ -178,7 +177,7 @@ header .navbar-brand img {
  */
  
 .works {
-	padding-top: 120px;
+	padding-top: 40px;
 	padding-bottom: 30px;
 }
 
@@ -347,4 +346,18 @@ footer .copy-right {
 }
 .form-control{
 	text-align: right;
+}
+.works{
+	min-height: 400px;
+}
+.page-title{
+	background:#e32b2b;
+	padding:10px;
+	color:#fff;
+	text-align: right;
+	margin: 0 1px;
+	border-radius: 1px;
+	opacity: 0.9;
+	font-size: 15px;
+	font-weight: bold;
 }

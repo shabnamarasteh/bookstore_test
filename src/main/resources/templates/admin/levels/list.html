@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>اشتراک در سیستم</title>
+    <div th:replace="fragment/admin_header::head"></div>
+</head>
+<body>
+<div th:replace="fragment/admin_header::menu"></div>
+
+<div class="page-title">
+    <p style="text-align: right">اشتراک</p>
+</div>
+<!-- works -->
+<div class="works" id="levels">
+    <div class="container">
+        <div class="row">
+            <table class="table table-hover" style="direction: rtl">
+                <thead>
+                <td>#</td>
+                <td>عنوان</td>
+                <td>تعداد روز</td>
+                <td>هزینه اشتراک</td>
+                <td>ادمین ایجاد کننده</td>
+                <td>ویرایش</td>
+                <td>حذف</td>
+                </thead>
+                <tr th:each="level : ${levels} ">
+                    <td ><img class="img-responsive" width="100px" th:src="'/img/levels/'+${level.getCover()}" alt="" /></td>
+                    <td><p th:text="${level.getName()}"></p></td>
+                    <td><p th:text="${level.getDays()}"></p></td>
+                    <td><p th:text="${level.getPrice()}"></p></td>
+                    <td><p th:text="${level.createdBy != null} ? ${level.createdBy.firstname} : '___'"></p></td>
+                    <td><a th:href="'/admin/levels/edit/'+${level.getId()}" >edit</a></td>
+                    <td><a th:href="'/admin/levels/delete/'+${level.getId()}" >delete</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+<div th:replace="fragment/footer::footer"></div>
+
+</body>
+</html>

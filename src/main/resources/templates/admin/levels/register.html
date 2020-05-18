@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>اشتراک</title>
+    <div th:replace="fragment/admin_header::head"></div>
+</head>
+<body>
+<div th:replace="fragment/admin_header::menu"></div>
+
+<div class="page-title">
+    <p style="text-align: right"> اشتراک</p>
+</div>
+<div class="works" id="levels">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div  class="col-md-6">
+                <form role="form" id="registerlevelForm" th:action="@{/admin/levels/register}" th:object="${level}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="id" id="id" th:field="*{id}">
+                    <div class="form-group">
+                        <label for="name">عنوان</label>
+                        <input class="form-control" type="text" id="name" name="name" th:field="*{name}" placeholder="عنوان" />
+                    </div>
+                    <div class="form-group">
+                        <label for="days">تعداد روز</label>
+                        <input class="form-control" type="text" id="days" name="days" th:field="*{days}" placeholder="تعداد روز" />
+                    </div>
+                    <div class="form-group">
+                        <label for="price">هزینه</label>
+                        <input class="form-control" type="text" id="price" name="price" th:field="*{price}" placeholder="هزینه" />
+                    </div>
+                    <div class="form-group">
+                        <label for="description">توضیحات</label>
+                        <input class="form-control" type="text" id="description" name="description" th:field="*{description}" placeholder="توضیحات" />
+                    </div>
+                    <div class="form-group">
+                        <label for="file">تصویر</label>
+                        <input class="form-control" type="file" id="file" name="file"  th:field="*{file}" placeholder="تصویر" />
+                        <img th:src="'/img/levels/'+${level.getCover()}" style="width: 120px; margin: 10px;">
+                    </div>
+
+                    <div class="form-group" style="text-align: center">
+                        <button type="submit" name="submit" id="submit" class="btn btn-success">ثبت</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragment/footer::footer"></div>
+</body>
+</html>

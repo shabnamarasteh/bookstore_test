@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import ir.test.bookstore.modules.admins.entity.Admins;
 import ir.test.bookstore.modules.books.entity.Books;
+import ir.test.bookstore.modules.levels.entity.Levels;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,10 +18,7 @@ public class Borrow {
     private long id;
 
     private long userid;
-    private long bookid;
-    private long adminid;
     private long borrowdays;
-    private long levelid;
     private boolean refund;
     private LocalDateTime endDate;
     private LocalDateTime startDate;
@@ -33,17 +31,23 @@ public class Borrow {
 //    private Books books;
 
     @ManyToOne
-    private Admins admins;
+    @JoinColumn(name = "bookid")
+    private Books bookid;
+
+    @ManyToOne
+    @JoinColumn(name = "createdBy")
+    private Admins createdBy;
+
+    @OneToOne
+    @JoinColumn(name = "levelid")
+    private Levels levelid;
 
     public Borrow() {
     }
 
-    public Borrow(long userid, long bookid, long adminid, long borrowdays, long levelid, boolean refund, LocalDateTime endDate, LocalDateTime startDate) {
+    public Borrow(long userid,long borrowdays, boolean refund, LocalDateTime endDate, LocalDateTime startDate) {
         this.userid = userid;
-        this.bookid = bookid;
-        this.adminid = adminid;
         this.borrowdays = borrowdays;
-        this.levelid = levelid;
         this.refund = refund;
         this.endDate = endDate;
         this.startDate = startDate;
@@ -66,36 +70,12 @@ public class Borrow {
         this.userid = userid;
     }
 
-    public long getBookid() {
-        return bookid;
-    }
-
-    public void setBookid(long bookid) {
-        this.bookid = bookid;
-    }
-
-    public long getAdminid() {
-        return adminid;
-    }
-
-    public void setAdminid(long adminid) {
-        this.adminid = adminid;
-    }
-
     public long getBorrowdays() {
         return borrowdays;
     }
 
     public void setBorrowdays(long borrowdays) {
         this.borrowdays = borrowdays;
-    }
-
-    public long getLevelid() {
-        return levelid;
-    }
-
-    public void setLevelid(long levelid) {
-        this.levelid = levelid;
     }
 
     public boolean isRefund() {
@@ -137,7 +117,31 @@ public class Borrow {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
+    public Admins getCreatedBy() {
+        return createdBy;
+    }
+
+    public Borrow setCreatedBy(Admins createdBy) {
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    public Levels getLevelid() {
+        return levelid;
+    }
+
+    public Borrow setLevelid(Levels levelid) {
+        this.levelid = levelid;
+        return this;
+    }
+
+    public Books getBookid() {
+        return bookid;
+    }
+
+    public Borrow setBookid(Books bookid) {
+        this.bookid = bookid;
+        return this;
+    }
 }
-
-
-

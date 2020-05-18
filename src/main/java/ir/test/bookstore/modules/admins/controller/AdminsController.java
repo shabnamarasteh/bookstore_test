@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 @Controller
@@ -23,7 +24,7 @@ public class AdminsController {
         this.booksService = booksService;
     }
 
-    @RequestMapping(value = {"/","" } , method = RequestMethod.GET)
+    @RequestMapping(value = {"/","", "/list" , "/list/" } , method = RequestMethod.GET)
     public String showAlladmins(Model model){
         model.addAttribute("admins" , this.adminsService.findAllAdmins());
 
@@ -43,9 +44,9 @@ public class AdminsController {
     }
 
     @RequestMapping(value = {"/register"} , method = RequestMethod.POST)
-    public String registerAdmin(@ModelAttribute Admins admins) throws IOException {
+    public String registerAdmin(@ModelAttribute Admins admins) throws IOException, InvocationTargetException, IllegalAccessException {
         this.adminsService.save(admins);
-        return "redirect:/admin/admins/register";
+        return "redirect:/admin/admins/list";
     }
 
     @RequestMapping(value = {"/rest"} , method = RequestMethod.GET)
@@ -55,7 +56,7 @@ public class AdminsController {
     }
 
     @RequestMapping( value =  {"/rest" } , method =  RequestMethod.POST)
-    public @ResponseBody Admins saveAdmins(@RequestBody  Admins admins) throws IOException {
+    public @ResponseBody Admins saveAdmins(@RequestBody  Admins admins) throws IOException, InvocationTargetException, IllegalAccessException {
         return adminsService.save(admins);
     }
 }

@@ -9,44 +9,54 @@
 </head>
 <body>
 <div th:replace="fragment/admin_header::menu"></div>
-
-<div class="row">
-    <div class="col-md-3"></div>
-    <div  class="col-md-6">
-        <form role="form" id="registerBookForm" action="/books/register" method="post" enctype="multipart/form-data" th:object="${books}">
-
-            <div class="form-group">
-
-                <label for="name">نام کتاب</label>
-                <input class="form-control" type="text" id="name" name="name" placeholder="نام کتاب" />
-            </div>
-            <div class="form-group">
-                <label for="author">نویسنده</label>
-                <input class="form-control" type="text" id="author" name="author" placeholder="نویسنده" />
-            </div>
-            <div class="form-group">
-                <label for="subject">موضوع</label>
-                <input class="form-control" type="text" id="subject" name="subject" placeholder="موضوع" />
-            </div>
-            <div class="form-group">
-                <label for="publishYear">سال انتشار</label>
-                <input class="form-control" type="text" id="publishYear" name="publishYear" placeholder="سال انتشار" />
-            </div>
-            <div class="form-group">
-                <label for="count" th:text="تعداد"></label>
-                <input class="form-control" type="number" id="count" name="count" placeholder="تعداد" />
-            </div>
-             <div class="form-group">
-                <label for="file">تصویر</label>
-                <input class="form-control" type="file" id="file" name="file" placeholder="تصویر" />
-            </div>
-
-            <div class="form-group">
-                <button type="submit" name="submit" id="submit" class="btn btn-default">ثبت</button>
-            </div>
-        </form>
-    </div>
+<div class="page-title">
+    <p style="text-align: right"> ثبت کتاب جدید</p>
 </div>
 
+    <div  class="works" id="book">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div  class="col-md-6">
+                    <form role="form" id="registerBookForm" action="/admin/books/register"
+                          method="post" enctype="multipart/form-data" th:object="${books}">
+                        <input type="hidden" name="id" id="id" th:field="*{id}">
+
+                        <div class="form-group">
+
+                            <label for="name">نام کتاب</label>
+                            <input class="form-control" type="text" id="name" name="name" th:field="*{name}" placeholder="نام کتاب" />
+                        </div>
+                        <div class="form-group">
+                            <label for="author">نویسنده</label>
+                            <input class="form-control" type="text" id="author" name="author" th:field="*{author}" placeholder="نویسنده" />
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">موضوع</label>
+                            <input class="form-control" type="text" id="subject" name="subject" th:field="*{subject}" placeholder="موضوع" />
+                        </div>
+                        <div class="form-group">
+                            <label for="publishYear">سال انتشار</label>
+                            <input class="form-control" type="text" id="publishYear" name="publishYear" th:field="*{publishYear}" placeholder="سال انتشار" />
+                        </div>
+                        <div class="form-group">
+                            <label for="count" th:text="تعداد"></label>
+                            <input class="form-control" type="number" id="count" name="count" th:field="*{count}" placeholder="تعداد" />
+                        </div>
+                         <div class="form-group">
+                            <label for="file">تصویر</label>
+                            <input class="form-control" type="file" id="file" name="file"  th:field="*{file}" placeholder="تصویر" />
+                             <img th:src="'/img/books/'+${books.getImage()}" style="width: 120px; margin: 10px;">
+                        </div>
+
+                        <div class="form-group" style="text-align: center">
+                            <button type="submit" name="submit" id="submit" class="btn btn-success">ثبت</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<div th:replace="fragment/footer::footer"></div>
 </body>
 </html>

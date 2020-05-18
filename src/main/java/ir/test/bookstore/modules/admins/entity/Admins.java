@@ -3,6 +3,7 @@ package ir.test.bookstore.modules.admins.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import ir.test.bookstore.modules.books.entity.Books;
 import ir.test.bookstore.modules.borrow.entity.Borrow;
+import ir.test.bookstore.modules.levels.entity.Levels;
 import ir.test.bookstore.modules.users.entity.Users;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -32,7 +33,6 @@ public class Admins {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    private long createdBy;
     private long phonenumber;
     private long mobilenumber;
     private String role;
@@ -40,13 +40,19 @@ public class Admins {
     private String city;
     private String image;
 
-    @OneToMany(mappedBy = "admins")
+    @OneToOne
+    private Admins createdby;
+
+    @OneToMany(mappedBy = "createdBy")
     private List<Users> users;
 
-    @OneToMany(mappedBy = "admins")
+    @OneToMany(mappedBy = "createdBy")
+    private List<Levels> levels;
+
+    @OneToMany(mappedBy = "createdBy")
     private List<Books> books;
 
-    @OneToMany(mappedBy = "admins")
+    @OneToMany(mappedBy = "createdBy")
     private List<Borrow> borrows;
 
     @Transient
@@ -56,7 +62,7 @@ public class Admins {
     public Admins() {
     }
 
-    public Admins(String firstname, String lastname, long nationalcode, String email, String password, String address, LocalDateTime lastlogin, LocalDateTime createdAt, LocalDateTime updatedAt, long createdBy, long phonenumber, long mobilenumber, String role, String province, String city, String image) {
+    public Admins(String firstname, String lastname, long nationalcode, String email, String password, String address, LocalDateTime lastlogin, LocalDateTime createdAt, LocalDateTime updatedAt,  long phonenumber, long mobilenumber, String role, String province, String city, String image) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.nationalcode = nationalcode;
@@ -66,7 +72,6 @@ public class Admins {
         this.lastlogin = lastlogin;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.createdBy = createdBy;
         this.phonenumber = phonenumber;
         this.mobilenumber = mobilenumber;
         this.role = role;
@@ -75,14 +80,13 @@ public class Admins {
         this.image = image;
     }
 
-    public Admins(String firstname, String lastname, long nationalcode, String email, String password, String address, long createdBy, long phonenumber, long mobilenumber, String role) {
+    public Admins(String firstname, String lastname, long nationalcode, String email, String password, String address, long phonenumber, long mobilenumber, String role) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.nationalcode = nationalcode;
         this.email = email;
         this.password = password;
         this.address = address;
-        this.createdBy = createdBy;
         this.phonenumber = phonenumber;
         this.mobilenumber = mobilenumber;
         this.role = role;
@@ -166,14 +170,6 @@ public class Admins {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public long getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(long createdBy) {
-        this.createdBy = createdBy;
     }
 
     public long getPhonenumber() {

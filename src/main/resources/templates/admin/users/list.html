@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>کاربران</title>
+    <div th:replace="fragment/admin_header::head"></div>
+</head>
+<body>
+<div th:replace="fragment/admin_header::menu"></div>
+
+<div class="page-title">
+    <p style="text-align: right">کاربران</p>
+</div>
+<!-- works -->
+<div class="works" id="users" >
+    <div class="container">
+        <div class="row">
+            <table class="table table-hover" style="direction: rtl">
+                <thead>
+                <td>#</td>
+                <td>نام</td>
+                <td>کدملی</td>
+                <td>ایمیل</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                </thead>
+                <tr th:each="user : ${users} ">
+                    <td >
+                        <!-- work details image -->
+                    </td>
+                    <td><a th:href="'/admin/users/'+${user.getId()}"><p th:text="${user.getFirstname()}+${user.getLastname()}"></p></a></td>
+                    <td><p th:text="${user.getNationalcode()}"></p></td>
+                    <td><p th:text="${user.getEmail()}"></p></td>
+                    <td><a th:href="'/admin/users/edit/'+${user.getId()}" >ویرایش</a></td>
+                    <td><a th:href="'/admin/users/delete/'+${user.getId()}" >حذف</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+<div th:replace="fragment/footer::footer"></div>
+
+</body>
+</html>
