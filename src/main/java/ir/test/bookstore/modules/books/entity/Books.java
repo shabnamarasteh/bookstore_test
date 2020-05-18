@@ -24,7 +24,8 @@ public class Books {
     private long id;
     private String name;
     private String subject;
-    private String author;    private long publishYear;
+    private String author;
+    private long publishYear;
     private long count; //tedadekol
     @Column(nullable = true)
     private long balance; //mojodi
@@ -34,9 +35,7 @@ public class Books {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    private long createdBy;
     private String image;
-
 
     @Transient
     @JsonIgnore
@@ -49,16 +48,16 @@ public class Books {
     private List<Borrow> borrows ;
 
     @ManyToOne
-    private Admins admins;
+    @JoinColumn(name = "createdBy")
+    private Admins createdBy;
 
-    public Books(String name, String subject, String author, long publishYear, long count, long balance, long createdBy) {
+    public Books(String name, String subject, String author, long publishYear, long count, long balance) {
         this.name = name;
         this.subject = subject;
         this.author = author;
         this.publishYear = publishYear;
         this.count = count;
         this.balance = balance;
-        this.createdBy = createdBy;
     }
 
     public Books() {
@@ -82,14 +81,6 @@ public class Books {
         return this;
     }
 
-    public Admins getAdmins() {
-        return admins;
-    }
-
-    public Books setAdmins(Admins admins) {
-        this.admins = admins;
-        return this;
-    }
 
     public long getId() {
         return id;
@@ -155,14 +146,6 @@ public class Books {
         this.updatedAt = updatedAt;
     }
 
-    public long getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(long createdBy) {
-        this.createdBy = createdBy;
-    }
-
     public MultipartFile getFile() {
         return file;
     }
@@ -187,6 +170,15 @@ public class Books {
 
     public Books setBorrows(List<Borrow> borrows) {
         this.borrows = borrows;
+        return this;
+    }
+
+    public Admins getCreatedBy() {
+        return createdBy;
+    }
+
+    public Books setCreatedBy(Admins createdBy) {
+        this.createdBy = createdBy;
         return this;
     }
 }

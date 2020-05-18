@@ -29,7 +29,7 @@
                         </thead>
                         <tr th:each="book : ${books} ">
                             <td >
-                                <img class="img-responsive" width="100px" th:src="'/img/book/'+${book.getImage()}" alt="" />
+                                <img class="img-responsive" width="100px" th:src="'/img/books/'+${book.getImage()}" alt="" />
                             </td>
                             <td><a th:href="'/admin/books/'+${book.getId()}"><p th:text="${book.getName()}"></p></a></td>
                             <td><a th:href="'/admin/books/'+${book.getId()}"><p th:text="${book.getSubject()}"></p></a></td>

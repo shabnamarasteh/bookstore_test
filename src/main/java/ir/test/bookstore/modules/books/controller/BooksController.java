@@ -1,6 +1,7 @@
 package ir.test.bookstore.modules.books.controller;
 
 import ir.test.bookstore.modules.books.entity.Books;
+import ir.test.bookstore.modules.books.entity.Comments;
 import ir.test.bookstore.modules.books.service.BooksService;
 import ir.test.bookstore.modules.books.service.CommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,10 +41,16 @@ public class BooksController {
             System.out.println(books.getId());
             this.booksService.saveBooks(books);
         } catch (IOException e) {
+            System.out.println("----------------1---------------");
             e.printStackTrace();
         } catch (InvocationTargetException e) {
+            System.out.println("----------------2---------------");
             e.printStackTrace();
         } catch (IllegalAccessException e) {
+            System.out.println("----------------3---------------");
+            e.printStackTrace();
+        }catch (Exception e){
+            System.out.println("----------------4--------------");
             e.printStackTrace();
         }
         return "redirect:/admin/books/";
@@ -64,6 +71,8 @@ public class BooksController {
     @RequestMapping(value = {"/admin/books/{id}" , "/admin.books/{id}/"}, method = RequestMethod.GET)
     public String findOneBookadmin(Model model , @PathVariable long id){
         model.addAttribute("book", this.booksService.findOne(id));
+        model.addAttribute("comment" , new Comments());
+
         return "admin/books/detail";
     }
 

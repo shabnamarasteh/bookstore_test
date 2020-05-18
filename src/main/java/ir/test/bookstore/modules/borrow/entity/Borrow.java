@@ -16,7 +16,6 @@ public class Borrow {
     @Id
     @GeneratedValue
     private long id;
-
     private long userid;
     private long borrowdays;
     private boolean refund;

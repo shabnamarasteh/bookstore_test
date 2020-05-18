@@ -12,11 +12,11 @@
     <p style="text-align: right" th:text="${book.getName()}"></p>
 </div>
 
-<div class="works" id="books">
-    <div class="container">
+<div class="works" >
+    <div class="container" id="books">
         <div class="row">
-            <div class="col-lg-3">
-                <img class="img-responsive" width="100px" th:src="'/img/book/'+${book.getCover()}" alt="" />
+            <div class="col-lg-3" style="float: right">
+                <img class="img-responsive" width="100%" th:src="'/img/books/'+${book.getImage()}" alt="" />
             </div>
             <div class="col-lg-9" style="border: 1px solid #eee">
                 <p style="text-align: right" th:text="${book.getName()}"></p>
@@ -24,13 +24,36 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <br>
+    <br>
+    <br>
+    <div class="container" style="text-align: right">
         <div class="row">
+            <p>نظرات</p>
+
             <div class="col-lg-12" style="border: 1px solid #eee">
                 <div th:each="comment : ${comments} ">
                      <p style="text-align: right" th:text="${comment.getuser_id()}"></p>
                     <p style="text-align: right" th:text="${comment.getDescription()}"></p>
                 </div>
+            </div>
+            <br>
+            <p>نظر جدید</p>
+            <div class="col-lg-12" style="border: 1px solid #eee">
+                <form role="form" id="registerCommentForm" action="/admin/comments/register"
+                      method="post" enctype="multipart/form-data" th:object="${comment}">
+                    <input type="hidden" name="bookid" id="bookid" th:value="${book.getId()}">
+
+                    <div class="form-group">
+                        <label for="description">نظر</label>
+                        <input class="form-control" type="text" id="description" name="description" th:field="*{description}" placeholder="نظر" />
+                    </div>
+
+                    <div class="form-group" style="text-align: center">
+                        <button type="submit" name="submit" id="submit" class="btn btn-success">ثبت</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
